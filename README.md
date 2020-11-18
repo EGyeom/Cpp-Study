@@ -1,2 +1,1 @@
-# C++ Study
-# by 열혈C++
+#For C++ Study
