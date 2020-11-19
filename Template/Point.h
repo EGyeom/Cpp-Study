@@ -1,20 +1,44 @@
 #pragma once
 #include <iostream>
 
-class Point
+
+//템플릿 클래스
+template<class T>
+class Point {
+private:
+	T Xpos;
+	T Ypos;
+public:
+	Point(T x, T y) : Xpos(x), Ypos(y)
+	{}
+	void showData()
+	{
+		std::cout << "X pos : " << Xpos << "\n"
+			<< "Y pos : " << Ypos << "\n";
+	}
+};
+
+/* 1. 템플릿 클래스 특수화
+ -> 템플릿 함수, 클래스는 각각의 자료형마다 하나씩 함수 및 클래스가 생성된다.
+ 이때 class Point<int>등으로 특수화 시키면 새로 생성되지않고 int 자료형일때 앞의 클래스가 생성된다.
+ */
+template<>
+class Point<int>
 {
 private:
-	int posX;
-	int posY;
+	int Xpos;
+	int Ypos;
 public:
-	Point(int x=0, int y=0) : posX(x), posY(y)
+	Point(int x, int y) : Xpos(x), Ypos(y)
 	{}
-	void ShowPos() const
+	void showData()
 	{
-		std::cout << "X pos : " << posX << "\t" << "Y pos : " << posY << "\n";
+		std::cout << "X pos : " << Xpos << "\n"
+			<< "Y pos : " << Ypos << "\n";
 	}
-	
 };
+
+
 //인라인과 템플릿
 /*
 대부분의 빌드 환경에서 인라인을 컴파일 도중에 삽입함
@@ -31,3 +55,4 @@ void SwapData(T* Data1, T* Data2)
 	*Data1 = *Data2;
 	*Data2 = temp;
 }
+
